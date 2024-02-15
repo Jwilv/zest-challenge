@@ -7,12 +7,12 @@ export default function Page() {
   return (
     <Container>
       <Main>
-        <Stack.Screen options={{ title: 'Overview' }} />
+        <Stack.Screen  />
         <YStack>
           <Title>Hello World</Title>
           <Subtitle>This is the first page of your app.</Subtitle>
         </YStack>
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
+        <Link href={{ pathname: '/brewery/1' }} asChild>
           <Button>
             <ButtonText>Show Details</ButtonText>
           </Button>
