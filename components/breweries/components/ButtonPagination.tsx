@@ -19,7 +19,6 @@ export const ButtonPagination = ({
 }: Props) => {
     return (
         <Button
-            padding={0}
             onTouchEnd={() => onTouchEnd(page)}
             backgroundColor={backgroundColor}
         >
