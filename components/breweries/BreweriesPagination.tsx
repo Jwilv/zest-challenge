@@ -1,12 +1,15 @@
 
 import { XStack, YStack, View, Button, ButtonText } from 'tamagui';
 
-import { Text } from 'react-native';
+import { Text, TextInput } from 'react-native';
 import { usePagination } from '~/hooks/usePagination';
 import { ButtonPagination } from './components';
 import { ArrowLeft, ArrowRight } from 'lucide-react-native';
+import { useState } from 'react';
 
 export const BreweriesPagination = () => {
+
+    const [inputValue, setInputValue] = useState('');
 
     const {
         breweriesPage,
@@ -19,6 +22,11 @@ export const BreweriesPagination = () => {
 
     return (
         <>
+            <TextInput
+                placeholder='Search...'
+                value={inputValue}
+                onChangeText={(text) => setInputValue(text)}
+            />
             {
                 breweriesPage.map((brewery: any) => {
                     return (
