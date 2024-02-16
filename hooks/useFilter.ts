@@ -20,7 +20,7 @@ export const useFilter = () => {
 
     useEffect(() => {
         const filtered = allItems.filter(item =>
-            (filter.name === '' || item.name.toLowerCase().includes(filter.name.toLowerCase())) &&
+            (filter.name === '' || new RegExp(filter.name.toLowerCase()).test(item.name.toLowerCase())) &&
             (filter.city === '' || item.city.toLowerCase().includes(filter.city.toLowerCase()))
         );
 
@@ -31,5 +31,7 @@ export const useFilter = () => {
     return {
         handleFilter,
         filteredItems,
+        setAllItems,
+        filter
     }
 }
