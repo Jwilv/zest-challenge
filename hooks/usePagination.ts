@@ -22,6 +22,10 @@ export const usePagination = () => {
         }
     }
 
+    const selectPage = (page: number) => {
+        setCurrentPage(page);
+    }
+
     useEffect(() => {
         const fechtUpdate = async () => {
             if (currentPage % 5 === 0) {
@@ -57,5 +61,6 @@ export const usePagination = () => {
         currentPage,
         breweriesPage,
         pages,
+        selectPage,
     }
 }
