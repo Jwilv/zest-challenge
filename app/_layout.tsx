@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { TamaguiProvider } from 'tamagui';
 
 import config from '../tamagui.config';
-import { Text } from 'react-native';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, Text } from 'react-native';
+import { BottomTab } from '~/components/navegation/BottomTab';
 
 export default function Layout() {
   const [loaded] = useFonts({
@@ -22,7 +23,17 @@ export default function Layout() {
 
   return (
     <TamaguiProvider config={config}>
-      <Slot />
+      <SafeAreaView style={styles.androidSafeArea}>
+        <Slot/>
+        <BottomTab />
+      </SafeAreaView>
     </TamaguiProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  androidSafeArea: {
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    height: '100%',
+  }
+})

@@ -3,7 +3,7 @@ import { createInterFont } from '@tamagui/font-inter';
 import { createMedia } from '@tamagui/react-native-media-driver';
 import { shorthands } from '@tamagui/shorthands';
 import { themes, tokens } from '@tamagui/themes';
-import { createTamagui, styled, SizableText, H1, YStack } from 'tamagui';
+import { createTamagui, styled, SizableText, H1, YStack, Label } from 'tamagui';
 
 const animations = createAnimations({
   bouncy: {
@@ -48,6 +48,25 @@ export const Title = styled(H1, {
 export const Subtitle = styled(SizableText, {
   color: '#38434D',
   size: '$9',
+});
+
+export const Bar = styled(YStack, {
+  alignItems: 'center',
+  backgroundColor: '#f3f4f6',
+  borderRadius: 28,
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  maxWidth: 500,
+  padding: 10,
+  margin: 8,
+});
+
+export const BarItem = styled(YStack, {
+  alignItems: 'center',
+  justifyContent: 'center',
+  display: 'flex',
+  padding: 7,
+  borderRadius: '$10',
 });
 
 export const Button = styled(YStack, {
@@ -118,7 +137,7 @@ type AppConfig = typeof config;
 // Docs: https://tamagui.dev/docs/core/configuration
 
 declare module 'tamagui' {
-  interface TamaguiCustomConfig extends AppConfig {}
+  interface TamaguiCustomConfig extends AppConfig { }
 }
 
 export default config;
