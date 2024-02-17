@@ -23,13 +23,19 @@ export const BreweriesPagination = () => {
         cityOptions,
     } = usePagination();
 
-    const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    const handleChangeInput = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
         setInputValue(e.nativeEvent.text);
         if (e.nativeEvent.text === '') {
             handleFilter({ name: '', city: '' })
         }
         handleFilter({ name: e.nativeEvent.text, city: '' })
         selectPage(1)
+    }
+
+    const handleFilterCity = (city: string) => {
+        city === 'all'
+            ? handleFilter({ name: inputValue, city: '' })
+            : handleFilter({ name: inputValue, city })
     }
 
 
@@ -41,10 +47,13 @@ export const BreweriesPagination = () => {
             <TextInput
                 placeholder='Search...'
                 value={inputValue}
-                onChange={handleChange}
+                onChange={handleChangeInput}
                 style={{ height: 60, width: 350 }}
             />
-            <SelectCity citys={cityOptions} />
+            <SelectCity
+                citys={cityOptions}
+                onValueChange={handleFilterCity}
+            />
             <FlatList
                 data={breweriesPage}
                 renderItem={({ item }) => <CardBrewery {...item} />}

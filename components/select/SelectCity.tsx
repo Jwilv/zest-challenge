@@ -1,17 +1,23 @@
 import { Picker } from '@react-native-picker/picker';
 import { Check } from 'lucide-react-native';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { View } from 'tamagui';
 
 
 
 interface Props {
     citys: string[]
+    onValueChange: (city: string) => void
 }
 
-export const SelectCity = ({ citys }: Props) => {
+export const SelectCity = ({ citys, onValueChange }: Props) => {
 
     const [selectValue, setSelectValue] = useState('all')
+
+    useEffect(() => {
+        onValueChange(selectValue);
+    }, [selectValue])
+
 
     return (
         <View borderRadius={10}>
