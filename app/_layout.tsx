@@ -6,6 +6,7 @@ import { TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';
 import { Platform, SafeAreaView, StatusBar, StyleSheet, Text } from 'react-native';
 import { BottomTab } from '~/components/navegation/BottomTab';
+import { LikeProvider } from '~/providers/LikeProvider';
 
 export default function Layout() {
   const [loaded] = useFonts({
@@ -23,10 +24,12 @@ export default function Layout() {
 
   return (
     <TamaguiProvider config={config}>
-      <SafeAreaView style={styles.androidSafeArea}>
-        <Slot/>
-        <BottomTab />
-      </SafeAreaView>
+      <LikeProvider>
+        <SafeAreaView style={styles.androidSafeArea}>
+          <Slot />
+          <BottomTab />
+        </SafeAreaView>
+      </LikeProvider>
     </TamaguiProvider>
   );
 }

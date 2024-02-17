@@ -1,20 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { Breweries } from "~/types";
+import { Brewery } from "~/types";
 
 interface LikeProviderProps {
     children: ReactNode;
 }
 
-interface Brewery {
-    name: string;
-    state: string;
-    country: string;
-    city: string;
-    id: string;
-}
-
-const LikeContext = createContext<Brewery[]>([]);
+export const LikeContext = createContext<Brewery[]>([]);
 
 export const LikeProvider = ({ children }: LikeProviderProps) => {
     const [likeBreweries, setLikeBreweries] = useState<Brewery[]>([]);
