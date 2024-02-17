@@ -1,16 +1,17 @@
-import { Stack } from 'expo-router'
 import React from 'react'
-import { Text, View } from 'react-native'
 import { Main } from 'tamagui'
+import { LikeProvider } from '~/providers/LikeProvider'
+import { Container } from '~/tamagui.config'
 
 const FavoritesPage = () => {
     return (
-        <Main>
-            <Stack.Screen options={{ title: 'Favorites' }} />
-            <View>
-                <Text>Favorites text</Text>
-            </View>
-        </Main>
+        <LikeProvider>
+            <Container>
+                <Main>
+
+                </Main>
+            </Container>
+        </LikeProvider>
     )
 }
 
