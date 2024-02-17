@@ -1,6 +1,4 @@
 
-import { XStack, YStack, View, Button, ButtonText } from 'tamagui';
-
 import { FlatList, NativeSyntheticEvent, Text, TextInput, TextInputChangeEventData } from 'react-native';
 import { usePagination } from '~/hooks/usePagination';
 import { ButtonPagination } from './components';
@@ -8,6 +6,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react-native';
 import { useState } from 'react';
 import { CardBrewery } from '../card';
 import { SelectCity } from '../select/SelectCity';
+import { View } from 'tamagui';
 
 export const BreweriesPagination = () => {
 
@@ -36,6 +35,8 @@ export const BreweriesPagination = () => {
         city === 'all'
             ? handleFilter({ name: inputValue, city: '' })
             : handleFilter({ name: inputValue, city })
+
+        selectPage(1)
     }
 
 
@@ -54,11 +55,13 @@ export const BreweriesPagination = () => {
                 citys={cityOptions}
                 onValueChange={handleFilterCity}
             />
-            <FlatList
-                data={breweriesPage}
-                renderItem={({ item }) => <CardBrewery {...item} />}
-                keyExtractor={item => item.id}
-            />
+                <FlatList
+                    data={breweriesPage}
+                    renderItem={({ item }) => <CardBrewery {...item} />}
+                    keyExtractor={item => item.id}
+                    style={{ height: 600 }}
+                />
+
             <View
                 display='flex'
                 flexDirection='row'
