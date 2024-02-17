@@ -5,5 +5,3 @@ const breweriesApi = axios.create({
 })
 
 export default breweriesApi
-
-'?by_name=cooper&per_page=8'
