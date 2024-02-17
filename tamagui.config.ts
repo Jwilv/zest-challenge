@@ -71,21 +71,19 @@ export const BarItem = styled(YStack, {
 
 export const Button = styled(YStack, {
   alignItems: 'center',
-  backgroundColor: '#6366F1',
-  borderRadius: 28,
-  hoverStyle: {
-    backgroundColor: '#5a5fcf',
-  },
   justifyContent: 'center',
-  maxWidth: 500,
-  padding: 16,
-  shadowColor: '#000',
-  shadowOffset: {
-    height: 2,
-    width: 0,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
+  maxWidth: 70,
+  height: 40,
+  width: 40,
+  padding: 9,
+  borderRadius: '$10',
+});
+
+export const ButtonCard = styled(YStack, {
+  position: 'relative',
+  left: 320,
+  top: -35,
+  zIndex: 20,
 });
 
 export const ButtonText = styled(SizableText, {
