@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { CardBrewery } from '../card';
 import { SelectCity } from '../select/SelectCity';
 import { View } from 'tamagui';
+import { BreweriesList } from '../list/BreweriesList';
 
 export const BreweriesPagination = () => {
 
@@ -55,12 +56,11 @@ export const BreweriesPagination = () => {
                 citys={cityOptions}
                 onValueChange={handleFilterCity}
             />
-                <FlatList
-                    data={breweriesPage}
-                    renderItem={({ item }) => <CardBrewery {...item} />}
-                    keyExtractor={item => item.id}
-                    style={{ height: 600 }}
-                />
+
+            <BreweriesList
+                breweries={breweriesPage}
+                style={{ height: 550 }}
+            />
 
             <View
                 display='flex'
