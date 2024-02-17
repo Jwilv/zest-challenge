@@ -33,9 +33,9 @@ export const LikeButton = ({
             {
                 storedValue
                     ?
-                    <HeartOff color="red" />
+                    <HeartOff color="#007AFF" />
                     :
-                    <Heart color="red" />
+                    <Heart color="#007AFF" />
             }
         </ButtonCard>
     )

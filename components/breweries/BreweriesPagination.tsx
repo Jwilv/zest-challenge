@@ -34,11 +34,15 @@ export const BreweriesPagination = () => {
 
 
     return (
-        <>
+        <View
+            justifyContent='center'
+            alignItems='center'
+        >
             <TextInput
                 placeholder='Search...'
                 value={inputValue}
                 onChange={handleChange}
+                style={{ height: 60, width: 350 }}
             />
             <SelectCity citys={cityOptions} />
             <FlatList
@@ -50,6 +54,8 @@ export const BreweriesPagination = () => {
                 display='flex'
                 flexDirection='row'
                 justifyContent='space-around'
+                width={350}
+                marginTop={5}
             >
                 <ButtonPagination
                     icon={ArrowLeft}
@@ -75,6 +81,6 @@ export const BreweriesPagination = () => {
                     backgroundColor='#007AFF'
                 />
             </View>
-        </>
+        </View>
     )
 }
