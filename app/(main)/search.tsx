@@ -1,12 +1,14 @@
-import React from 'react'
-import { Text } from 'tamagui'
-import { View } from 'tamagui'
+import { SearchBrewery } from "~/components/breweries/SearchBrewery"
+import { Container, Main } from "~/tamagui.config"
+
 
 const SearchPage = () => {
     return (
-        <View>
-            <Text>Search</Text>
-        </View>
+        <Container>
+            <Main alignItems='center'>
+                <SearchBrewery />
+            </Main>
+        </Container>
     )
 }
 
