@@ -7,6 +7,7 @@ import { ButtonPagination } from './components';
 import { ArrowLeft, ArrowRight } from 'lucide-react-native';
 import { useState } from 'react';
 import { CardBrewery } from '../card';
+import { SelectCity } from '../select/SelectCity';
 
 export const BreweriesPagination = () => {
 
@@ -19,7 +20,7 @@ export const BreweriesPagination = () => {
         changePage,
         selectPage,
         handleFilter,
-        filteredItems
+        cityOptions,
     } = usePagination();
 
     const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -39,6 +40,7 @@ export const BreweriesPagination = () => {
                 value={inputValue}
                 onChange={handleChange}
             />
+            <SelectCity citys={cityOptions} />
             <FlatList
                 data={breweriesPage}
                 renderItem={({ item }) => <CardBrewery {...item} />}

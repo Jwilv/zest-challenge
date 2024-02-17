@@ -14,9 +14,8 @@ export const usePagination = () => {
 
     const [breweriesPage, setBreweriesPage] = useState<Breweries>([]);
 
-    const { handleFilter, filteredItems, setAllItems, filter } = useFilter();
+    const { handleFilter, filteredItems, setAllItems, filter, cityOptions } = useFilter();
 
-    const [noExistFilters, setNoExistFilters] = useState(true)
 
     useEffect(() => {
         setAllItems(breweries);
@@ -24,10 +23,8 @@ export const usePagination = () => {
 
     useEffect(() => {
         if (filter.name === '' && filter.city === '') {
-            setNoExistFilters(true)
             currentPage === 1 && setPages([...Array(5)].map((_value, index) => (index + 1)))
         } else {
-            setNoExistFilters(false)
             const pagesDivision = Math.ceil(filteredItems.length / 8);
             pagesDivision < 5 && setPages([...Array(pagesDivision)].map((_value, index) => (index + 1)))
         }
@@ -35,7 +32,7 @@ export const usePagination = () => {
 
 
     const changePage = (addAndSubstract: number) => {
-        if ((currentPage + addAndSubstract > 0 && Math.ceil(filteredItems.length / 8) !== currentPage )) setCurrentPage(currentPage + addAndSubstract);
+        if ((currentPage + addAndSubstract > 0 && Math.ceil(filteredItems.length / 8) !== currentPage)) setCurrentPage(currentPage + addAndSubstract);
         if (pages[0] + addAndSubstract > 0 && pages.length >= 5) setPages(pages.map((page) => page + addAndSubstract));
     }
 
@@ -86,6 +83,7 @@ export const usePagination = () => {
         pages,
         selectPage,
         handleFilter,
-        filteredItems
+        filteredItems,
+        cityOptions,
     }
 }

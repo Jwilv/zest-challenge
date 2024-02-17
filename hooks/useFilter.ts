@@ -15,8 +15,15 @@ export const useFilter = () => {
 
     const [allItems, setAllItems] = useState<Breweries>([]);
     const [filteredItems, setFilteredItems] = useState<Breweries>([]);
+    const [cityOptions, setCityOptions] = useState<string[]>([])
 
     const handleFilter = (filter: Filter) => setFilter(filter);
+
+    useEffect(() => {
+        const allCities = filteredItems.map(brewery => brewery.city);
+        setCityOptions(allCities);
+    }, [filteredItems])
+
 
     useEffect(() => {
         const filtered = allItems.filter(item =>
@@ -32,6 +39,7 @@ export const useFilter = () => {
         handleFilter,
         filteredItems,
         setAllItems,
-        filter
+        filter,
+        cityOptions,
     }
 }
