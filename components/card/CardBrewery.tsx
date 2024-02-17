@@ -6,7 +6,7 @@ import { LikeButton } from '../button/LikeButton';
 
 export const CardBrewery = ({ name, state, country, city, id }: PreviusBrewery) => {
     return (
-        <Card width={350} height={60} margin={8} backgroundColor={'#d5d2c8'}>
+        <Card width={350} height={60} margin={5} backgroundColor={'#d5d2c8'}>
             <Card.Header
                 marginLeft={7}
                 marginTop={7}
