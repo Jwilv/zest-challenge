@@ -1,5 +1,5 @@
 import { Heart, HeartOff } from "lucide-react-native"
-import useLike from "~/hooks/useLike"
+import { useLike } from "~/hooks/useLike";
 import { ButtonCard } from "~/tamagui.config";
 import { PreviusBrewery } from "~/types";
 
@@ -11,7 +11,7 @@ export const LikeButton = ({
     id,
 }: PreviusBrewery) => {
 
-    const { addItem, removeItemById, findById, getAllItems, storedValue } = useLike(id, {
+    const { addItem, removeItemById, storedValue } = useLike(id, {
         name,
         state,
         country,

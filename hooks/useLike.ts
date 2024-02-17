@@ -29,17 +29,5 @@ export const useLike = (id: string, brewery: PreviusBrewery) => {
             .catch(err => console.log(err));
     };
 
-    const getAllItems = async () => {
-        return await AsyncStorage.getAllKeys();
-    };
-
-    const findById = async (id: string) => {
-        return await AsyncStorage.getItem(id)
-            .then(() => true)
-            .catch(() => false);
-    };
-
-    return { addItem, removeItemById, getAllItems, findById, storedValue };
+    return { addItem, removeItemById, storedValue };
 };
-
-export default useLocalStorage;
