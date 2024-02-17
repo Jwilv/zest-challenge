@@ -18,3 +18,11 @@ export interface Brewery {
   state: string
   street: string
 }
+
+export interface PreviusBrewery {
+  id: string
+  name: string
+  city: string
+  country: string
+  state: string
+}

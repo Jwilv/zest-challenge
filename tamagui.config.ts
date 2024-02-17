@@ -79,6 +79,13 @@ export const Button = styled(YStack, {
   borderRadius: '$10',
 });
 
+export const ButtonCard = styled(YStack, {
+  position: 'relative',
+  left: 320,
+  top: -35,
+  zIndex: 20,
+});
+
 export const ButtonText = styled(SizableText, {
   color: '#FFFFFF',
   fontSize: 16,

@@ -41,8 +41,8 @@ export const BreweriesPagination = () => {
             />
             <FlatList
                 data={breweriesPage}
-                renderItem={({ item }) => <CardBrewery {...item} />} 
-                keyExtractor={item => item.id} 
+                renderItem={({ item }) => <CardBrewery {...item} />}
+                keyExtractor={item => item.id}
             />
             <View
                 display='flex'
@@ -58,6 +58,7 @@ export const BreweriesPagination = () => {
                 {
                     pages.map((page) => (
                         <ButtonPagination
+                            key={page}
                             label={page}
                             onTouchEnd={selectPage}
                             page={page}
