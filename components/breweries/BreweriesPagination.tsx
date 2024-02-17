@@ -50,7 +50,7 @@ export const BreweriesPagination = () => {
                 placeholder='Search...'
                 value={inputValue}
                 onChange={handleChangeInput}
-                style={{ height: 60, width: 350 }}
+                style={{ height: 50, width: 350 }}
             />
             <SelectCity
                 citys={cityOptions}
@@ -59,7 +59,7 @@ export const BreweriesPagination = () => {
 
             <BreweriesList
                 breweries={breweriesPage}
-                style={{ height: 550 }}
+                style={{ height: 590 }}
             />
 
             <View

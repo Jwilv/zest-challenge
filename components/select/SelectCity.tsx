@@ -20,7 +20,7 @@ export const SelectCity = ({ citys, onValueChange }: Props) => {
 
 
     return (
-        <View borderRadius={10}>
+        <View borderRadius={10} h={50}>
             <Picker
                 selectedValue={selectValue}
                 onValueChange={(value) => setSelectValue(value)}
