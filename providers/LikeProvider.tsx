@@ -8,6 +8,12 @@ interface LikeProviderProps {
 
 export const LikeContext = createContext<Brewery[]>([]);
 
+/**
+ * Creates a LikeProvider component that provides a context for the likeBreweries state.
+ *
+ * @param {LikeProviderProps} children - The children components
+ * @return {ReactNode} The LikeProvider component
+ */
 export const LikeProvider = ({ children }: LikeProviderProps) => {
     const [likeBreweries, setLikeBreweries] = useState<Brewery[]>([]);
 
