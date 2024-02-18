@@ -1,4 +1,5 @@
-import { NativeSyntheticEvent, TextInput, TextInputChangeEventData } from "react-native"
+import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native"
+import { Input } from "~/tamagui.config"
 
 interface Props {
     inputValue: string
@@ -7,11 +8,11 @@ interface Props {
 
 export const SearchInput = ({ inputValue, handleChangeInput }: Props) => {
     return (
-        <TextInput
+        <Input
             placeholder='Search...'
             value={inputValue}
             onChange={handleChangeInput}
-            style={{ height: 50, width: 350 }}
+            style={{ height: 50, width: 350,}}
         />
     )
 }
