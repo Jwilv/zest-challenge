@@ -3,6 +3,7 @@ import { createInterFont } from '@tamagui/font-inter';
 import { createMedia } from '@tamagui/react-native-media-driver';
 import { shorthands } from '@tamagui/shorthands';
 import { themes, tokens } from '@tamagui/themes';
+import { TextInput } from 'react-native';
 import { createTamagui, styled, SizableText, H1, YStack, Label } from 'tamagui';
 
 const animations = createAnimations({
@@ -77,6 +78,20 @@ export const Button = styled(YStack, {
   width: 40,
   padding: 9,
   borderRadius: '$10',
+});
+
+export const Input = styled(TextInput, {
+  maxWidth: '190px',
+  backgroundColor: '#f5f5f5',
+  color: "#242424",
+  paddingLeft: 10,
+  minHeight: "40px",
+  borderRadius: "$4",
+  lineHeight: 1.15,
+  shadowOffset: { width: -2, height: 4 },
+  shadowColor: '#171717',
+  shadowOpacity: 0.2,
+  shadowRadius: 3,
 });
 
 export const ButtonCard = styled(YStack, {

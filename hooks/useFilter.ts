@@ -6,6 +6,12 @@ interface Filter {
     city: string,
 }
 
+/**
+ * Custom hook for filtering items based on name and city.
+ *
+ * @param {Filter} filter - the filter object containing name and city properties
+ * @return {object} an object containing functions and state variables for handling the filter
+ */
 export const useFilter = () => {
 
     const [filter, setFilter] = useState<Filter>({

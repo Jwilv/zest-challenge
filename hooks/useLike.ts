@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Brewery, PreviusBrewery } from '~/types';
 
+/**
+ * Custom hook to manage liking and unliking a brewery.
+ *
+ * @param {string} id - The unique identifier for the brewery
+ * @param {PreviusBrewery} brewery - The brewery object to be stored
+ * @return {Object} An object containing functions for adding and removing items, and the current stored value
+ */
 export const useLike = (id: string, brewery: PreviusBrewery) => {
     const [storedValue, setStoredValue] = useState<boolean>(false);
 

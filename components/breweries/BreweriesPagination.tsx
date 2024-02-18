@@ -9,6 +9,9 @@ import { SearchInput } from '../input/SearchInput';
 import { useDebonce, usePagination } from '~/hooks';
 import { BreweriesContext } from '~/providers/BreweriesProvider';
 
+/**
+ * Component for handling pagination and filtering of breweries.
+ */
 export const BreweriesPagination = () => {
 
     const [filterValues, setFilterValues] = useState({ name: '', city: '' });

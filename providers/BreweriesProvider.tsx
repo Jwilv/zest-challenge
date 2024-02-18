@@ -17,6 +17,12 @@ interface BreweriesContext {
 
 export const BreweriesContext = createContext<BreweriesContext>({} as BreweriesContext);
 
+/**
+ * BreweriesProvider component responsible for providing breweries data to its children components.
+ *
+ * @param {BreweryProviderProps} children - The child components to be provided with breweries data.
+ * @return {JSX.Element} JSX element containing the BreweriesContext provider and its children.
+ */
 export const BreweriesProvider = ({ children }: BreweryProviderProps) => {
 
     const [breweries, setBreweries] = useState<Breweries>([]);

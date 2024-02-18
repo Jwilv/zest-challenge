@@ -3,7 +3,11 @@ import { Breweries } from "~/types"
 import { useFilter } from "./useFilter";
 import { BreweriesContext } from "~/providers/BreweriesProvider";
 
-
+/**
+ * Returns an object with functions and data for pagination and filtering breweries.
+ *
+ * @return {object} Object with functions and data for pagination and filtering breweries
+ */
 export const usePagination = () => {
 
     const [breweriesPage, setBreweriesPage] = useState<Breweries>([]);
