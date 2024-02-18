@@ -1,12 +1,13 @@
 
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 import { ListPages } from './components';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SelectCity } from '../select/SelectCity';
 import { View } from 'tamagui';
 import { BreweriesList } from '../list/BreweriesList';
 import { SearchInput } from '../input/SearchInput';
 import { useDebonce, usePagination } from '~/hooks';
+import { BreweriesContext } from '~/providers/BreweriesProvider';
 
 export const BreweriesPagination = () => {
 
@@ -14,10 +15,10 @@ export const BreweriesPagination = () => {
 
     const debouncedValue = useDebonce(filterValues.name, 500);
 
+    const { pages, currentPage } = useContext(BreweriesContext);
+
     const {
         breweriesPage,
-        pages,
-        currentPage,
         changePage,
         selectPage,
         handleFilter,
