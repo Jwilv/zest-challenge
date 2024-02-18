@@ -1,16 +1,21 @@
-import { Stack, useLocalSearchParams } from 'expo-router';
-import React from 'react'
-import { View, Text } from 'tamagui';
+import { useContext } from 'react'
+import { BreweryInfo } from '~/components/breweries/BreweryInfo';
+import { BreweryContext } from '~/providers/BreweryProvider';
+
+import { Container, Main } from '~/tamagui.config';
 
 const BreweryByIdPage = () => {
 
-    const { id } = useLocalSearchParams();
+    const brewery = useContext(BreweryContext);
 
     return (
-        <View>
-            <Stack.Screen options={{ title: `Brewery ${id}` }} />
-            <Text>BreweryByIdPage</Text>
-        </View>
+        <Container>
+            <Main>
+                <BreweryInfo
+                    brewery={brewery}
+                />
+            </Main>
+        </Container>
     )
 }
 

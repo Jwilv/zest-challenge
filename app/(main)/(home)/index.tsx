@@ -1,10 +1,8 @@
 import { Container, Main } from "~/tamagui.config";
-import { BreweriesPagination } from '../components/breweries/BreweriesPagination';
+import { BreweriesPagination } from '../../../components/breweries/BreweriesPagination';
 
 
 export default function Page() {
-
-
 
   return (
     <Container>

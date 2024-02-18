@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Main } from 'tamagui'
 import { BreweriesList } from '~/components/list/BreweriesList'
 import { LikeContext } from '~/providers/LikeProvider'

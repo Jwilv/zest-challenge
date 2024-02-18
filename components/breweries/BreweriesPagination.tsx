@@ -1,41 +1,54 @@
 
-import { FlatList, NativeSyntheticEvent, Text, TextInput, TextInputChangeEventData } from 'react-native';
-import { usePagination } from '~/hooks/usePagination';
-import { ButtonPagination } from './components';
-import { ArrowLeft, ArrowRight } from 'lucide-react-native';
-import { useState } from 'react';
-import { CardBrewery } from '../card';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { ListPages } from './components';
+import { useContext, useEffect, useState } from 'react';
 import { SelectCity } from '../select/SelectCity';
 import { View } from 'tamagui';
 import { BreweriesList } from '../list/BreweriesList';
+import { SearchInput } from '../input/SearchInput';
+import { useDebonce, usePagination } from '~/hooks';
+import { BreweriesContext } from '~/providers/BreweriesProvider';
 
 export const BreweriesPagination = () => {
 
-    const [inputValue, setInputValue] = useState('');
+    const [filterValues, setFilterValues] = useState({ name: '', city: '' });
+
+    const debouncedValue = useDebonce(filterValues.name, 500);
+
+    const { pages, currentPage } = useContext(BreweriesContext);
 
     const {
         breweriesPage,
-        pages,
-        currentPage,
         changePage,
         selectPage,
         handleFilter,
         cityOptions,
     } = usePagination();
 
+    useEffect(() => {
+        handleFilter(filterValues);
+    }, [debouncedValue])
+
+
     const handleChangeInput = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-        setInputValue(e.nativeEvent.text);
-        if (e.nativeEvent.text === '') {
-            handleFilter({ name: '', city: '' })
-        }
-        handleFilter({ name: e.nativeEvent.text, city: '' })
+
+        setFilterValues({
+            ...filterValues,
+            name: e.nativeEvent.text,
+        });
+
         selectPage(1)
     }
 
     const handleFilterCity = (city: string) => {
-        city === 'all'
-            ? handleFilter({ name: inputValue, city: '' })
-            : handleFilter({ name: inputValue, city })
+
+        if (city === 'all') {
+            handleFilter({ ...filterValues, city: '' });
+            setFilterValues({ ...filterValues, city: '' });
+        } else {
+            handleFilter({ ...filterValues, city });
+            setFilterValues({ ...filterValues, city });
+        }
 
         selectPage(1)
     }
@@ -46,12 +59,11 @@ export const BreweriesPagination = () => {
             justifyContent='center'
             alignItems='center'
         >
-            <TextInput
-                placeholder='Search...'
-                value={inputValue}
-                onChange={handleChangeInput}
-                style={{ height: 50, width: 350 }}
+            <SearchInput
+                handleChangeInput={handleChangeInput}
+                inputValue={filterValues.name}
             />
+
             <SelectCity
                 citys={cityOptions}
                 onValueChange={handleFilterCity}
@@ -62,37 +74,12 @@ export const BreweriesPagination = () => {
                 style={{ height: 590 }}
             />
 
-            <View
-                display='flex'
-                flexDirection='row'
-                justifyContent='space-around'
-                width={350}
-                marginTop={5}
-            >
-                <ButtonPagination
-                    icon={ArrowLeft}
-                    onTouchEnd={changePage}
-                    page={-1}
-                    backgroundColor='#007AFF'
-                />
-                {
-                    pages.map((page) => (
-                        <ButtonPagination
-                            key={page}
-                            label={page}
-                            onTouchEnd={selectPage}
-                            page={page}
-                            backgroundColor={currentPage === page ? '#007AFF' : '#fff'}
-                        />
-                    ))
-                }
-                <ButtonPagination
-                    icon={ArrowRight}
-                    onTouchEnd={changePage}
-                    page={1}
-                    backgroundColor='#007AFF'
-                />
-            </View>
+            <ListPages
+                changePage={changePage}
+                currentPage={currentPage}
+                pages={pages}
+                selectPage={selectPage}
+            />
         </View>
     )
 }
