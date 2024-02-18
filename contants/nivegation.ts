@@ -6,7 +6,7 @@ interface TabItem {
     icon: LucideIcon;
 }
 
-export const NavegationTabItems: TabItem[] = [
+export const nivegationTabItems: TabItem[] = [
     {
         href: '/',
         icon: Home,
