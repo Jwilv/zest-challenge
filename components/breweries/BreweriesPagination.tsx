@@ -1,13 +1,12 @@
 
-import { FlatList, NativeSyntheticEvent, Text, TextInput, TextInputChangeEventData } from 'react-native';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 import { usePagination } from '~/hooks/usePagination';
-import { ButtonPagination } from './components';
-import { ArrowLeft, ArrowRight } from 'lucide-react-native';
+import { ListPages } from './components';
 import { useState } from 'react';
-import { CardBrewery } from '../card';
 import { SelectCity } from '../select/SelectCity';
 import { View } from 'tamagui';
 import { BreweriesList } from '../list/BreweriesList';
+import { SearchInput } from '../input/SearchInput';
 
 export const BreweriesPagination = () => {
 
@@ -46,12 +45,11 @@ export const BreweriesPagination = () => {
             justifyContent='center'
             alignItems='center'
         >
-            <TextInput
-                placeholder='Search...'
-                value={inputValue}
-                onChange={handleChangeInput}
-                style={{ height: 50, width: 350 }}
+            <SearchInput
+                handleChangeInput={handleChangeInput}
+                inputValue={inputValue}
             />
+
             <SelectCity
                 citys={cityOptions}
                 onValueChange={handleFilterCity}
@@ -62,37 +60,12 @@ export const BreweriesPagination = () => {
                 style={{ height: 590 }}
             />
 
-            <View
-                display='flex'
-                flexDirection='row'
-                justifyContent='space-around'
-                width={350}
-                marginTop={5}
-            >
-                <ButtonPagination
-                    icon={ArrowLeft}
-                    onTouchEnd={changePage}
-                    page={-1}
-                    backgroundColor='#007AFF'
-                />
-                {
-                    pages.map((page) => (
-                        <ButtonPagination
-                            key={page}
-                            label={page}
-                            onTouchEnd={selectPage}
-                            page={page}
-                            backgroundColor={currentPage === page ? '#007AFF' : '#fff'}
-                        />
-                    ))
-                }
-                <ButtonPagination
-                    icon={ArrowRight}
-                    onTouchEnd={changePage}
-                    page={1}
-                    backgroundColor='#007AFF'
-                />
-            </View>
+            <ListPages
+                changePage={changePage}
+                currentPage={currentPage}
+                pages={pages}
+                selectPage={selectPage}
+            />
         </View>
     )
 }
