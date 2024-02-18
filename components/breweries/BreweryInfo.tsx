@@ -24,7 +24,7 @@ export const BreweryInfo = ({ brewery }: Props) => {
                 padding={10}
                 borderRadius={10}
             >
-                {brewery && <LikeButton {...brewery} />}
+                {/* {brewery && <LikeButton {...brewery} />} */}
                 <TextBrewery icon={Beer}>
                     Type : {brewery?.brewery_type}
                 </TextBrewery>
