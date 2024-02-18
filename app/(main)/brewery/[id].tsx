@@ -1,7 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react'
 import { BreweryInfo } from '~/components/breweries/BreweryInfo';
-import { LikeButton } from '~/components/button/LikeButton';
 
 
 import breweriesApi from '~/services/breweries';
