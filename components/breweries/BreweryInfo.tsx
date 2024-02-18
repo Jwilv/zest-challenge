@@ -23,7 +23,6 @@ export const BreweryInfo = ({ brewery }: Props) => {
                 backgroundColor={'#f3f4f6'}
                 padding={10}
                 borderRadius={10}
-                
             >
                 {brewery && <LikeButton {...brewery} />}
                 <TextBrewery icon={Beer}>

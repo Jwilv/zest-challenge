@@ -1,16 +1,18 @@
 
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-import { usePagination } from '~/hooks/usePagination';
 import { ListPages } from './components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SelectCity } from '../select/SelectCity';
 import { View } from 'tamagui';
 import { BreweriesList } from '../list/BreweriesList';
 import { SearchInput } from '../input/SearchInput';
+import { useDebonce, usePagination } from '~/hooks';
 
 export const BreweriesPagination = () => {
 
-    const [inputValue, setInputValue] = useState('');
+    const [filterValues, setFilterValues] = useState({ name: '', city: '' });
+
+    const debouncedValue = useDebonce(filterValues.name, 500);
 
     const {
         breweriesPage,
@@ -22,19 +24,30 @@ export const BreweriesPagination = () => {
         cityOptions,
     } = usePagination();
 
+    useEffect(() => {
+        handleFilter(filterValues);
+    }, [debouncedValue])
+
+
     const handleChangeInput = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-        setInputValue(e.nativeEvent.text);
-        if (e.nativeEvent.text === '') {
-            handleFilter({ name: '', city: '' })
-        }
-        handleFilter({ name: e.nativeEvent.text, city: '' })
+
+        setFilterValues({
+            ...filterValues,
+            name: e.nativeEvent.text,
+        });
+
         selectPage(1)
     }
 
     const handleFilterCity = (city: string) => {
-        city === 'all'
-            ? handleFilter({ name: inputValue, city: '' })
-            : handleFilter({ name: inputValue, city })
+
+        if (city === 'all') {
+            handleFilter({ ...filterValues, city: '' });
+            setFilterValues({ ...filterValues, city: '' });
+        } else {
+            handleFilter({ ...filterValues, city });
+            setFilterValues({ ...filterValues, city });
+        }
 
         selectPage(1)
     }
@@ -47,7 +60,7 @@ export const BreweriesPagination = () => {
         >
             <SearchInput
                 handleChangeInput={handleChangeInput}
-                inputValue={inputValue}
+                inputValue={filterValues.name}
             />
 
             <SelectCity
