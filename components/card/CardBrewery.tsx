@@ -16,7 +16,7 @@ export const CardBrewery = ({ name, state, country, city, id }: PreviusBrewery) 
             width={350}
             height={60}
             margin={5}
-            backgroundColor={'#d5d2c8'}
+            backgroundColor={'#f5f5f5'}
         >
             <Card.Header
                 marginLeft={7}
