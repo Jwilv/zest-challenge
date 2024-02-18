@@ -3,6 +3,7 @@ import { TextBrewery } from '~/components/text/TextBrewery';
 import { View } from 'tamagui';
 import { Beer, Mailbox, MapPinned, PanelsTopLeft, Phone } from 'lucide-react-native';
 import { Brewery } from '~/types';
+import { LikeButton } from '../button/LikeButton';
 
 interface Props {
     brewery: Brewery | undefined
@@ -22,7 +23,9 @@ export const BreweryInfo = ({ brewery }: Props) => {
                 backgroundColor={'#f3f4f6'}
                 padding={10}
                 borderRadius={10}
+                
             >
+                {brewery && <LikeButton {...brewery} />}
                 <TextBrewery icon={Beer}>
                     Type : {brewery?.brewery_type}
                 </TextBrewery>
