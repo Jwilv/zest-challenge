@@ -5,12 +5,12 @@ import { View } from 'tamagui';
 
 
 
-interface Props {
+interface SelectCityProps {
     citys: string[]
     onValueChange: (city: string) => void
 }
 
-export const SelectCity = ({ citys, onValueChange }: Props) => {
+export const SelectCity = ({ citys, onValueChange }: SelectCityProps) => {
 
     const [selectValue, setSelectValue] = useState('all')
 
