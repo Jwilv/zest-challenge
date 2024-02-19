@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react"
 import { View } from "tamagui"
 import { SearchInput } from "../input/SearchInput"
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native"
 import { Brewery } from "~/types"
 import { BreweriesList } from "../list/BreweriesList"
-import { useDebonce } from "~/hooks/useDebounce"
-import breweriesApi from "~/services/breweries"
 import { ErrorSearch } from "../errors/ErrorSearch"
 
 interface SearchBreweryProps {
