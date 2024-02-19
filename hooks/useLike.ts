@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Brewery, PreviusBrewery } from '~/types';
+import { LikeContext } from '~/providers/LikeProvider';
 
 /**
  * Custom hook to manage liking and unliking a brewery.
@@ -11,6 +12,12 @@ import { Brewery, PreviusBrewery } from '~/types';
  */
 export const useLike = (id: string, brewery: PreviusBrewery) => {
     const [storedValue, setStoredValue] = useState<boolean>(false);
+
+    const { setLikeBreweries } = useContext(LikeContext);
+
+    useEffect(() => {
+
+    }, [storedValue]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,7 +33,9 @@ export const useLike = (id: string, brewery: PreviusBrewery) => {
 
     const addItem = async () => {
         await AsyncStorage.setItem(id, JSON.stringify(brewery))
-            .then(() => setStoredValue(true))
+            .then(() => {
+                setStoredValue(true)
+            })
             .catch(err => console.log(err))
     };
 

@@ -8,6 +8,7 @@ import { BreweriesList } from '../list/BreweriesList';
 import { SearchInput } from '../input/SearchInput';
 import { useDebonce, usePagination } from '~/hooks';
 import { BreweriesContext } from '~/providers/BreweriesProvider';
+import { ErrorSearch } from '../errors/ErrorSearch';
 
 /**
  * Component for handling pagination and filtering of breweries.
@@ -72,6 +73,16 @@ export const BreweriesPagination = () => {
                 onValueChange={handleFilterCity}
             />
 
+            {breweriesPage.length === 0 && debouncedValue !== '' &&
+                <View
+                    position="absolute"
+                    justifyContent='center'
+                    alignItems='center'
+                >
+                    <ErrorSearch />
+                </View>
+            }
+
             <BreweriesList
                 breweries={breweriesPage}
                 style={{ height: 590 }}
@@ -83,6 +94,7 @@ export const BreweriesPagination = () => {
                 pages={pages}
                 selectPage={selectPage}
             />
-        </View>
+
+        </View >
     )
 }
