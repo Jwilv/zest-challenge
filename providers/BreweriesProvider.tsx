@@ -36,9 +36,13 @@ export const BreweriesProvider = ({ children }: BreweryProviderProps) => {
     //initial load data from api
     useEffect(() => {
         const fecthData = async () => {
-            const { data } = await breweriesApi.get<Breweries>(`?page=${pageUpdate}&per_page=88`);
-            setBreweries([...new Set(data)]);
-            setPageUpdate(pageUpdate + 1);
+            try {
+                const { data } = await breweriesApi.get<Breweries>(`?page=${pageUpdate}&per_page=88`);
+                setBreweries([...new Set(data)]);
+                setPageUpdate(pageUpdate + 1);
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         fecthData()
@@ -47,9 +51,13 @@ export const BreweriesProvider = ({ children }: BreweryProviderProps) => {
     useEffect(() => {
         const fechtUpdate = async () => {
             if (currentPage % 5 === 0) {
-                const { data } = await breweriesApi.get<Breweries>(`?page=${pageUpdate}&per_page=88`);
-                setBreweries([...new Set([...breweries, ...data])]);
-                setPageUpdate(pageUpdate + 1);
+                try {
+                    const { data } = await breweriesApi.get<Breweries>(`?page=${pageUpdate}&per_page=88`);
+                    setBreweries([...new Set([...breweries, ...data])]);
+                    setPageUpdate(pageUpdate + 1);
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
 

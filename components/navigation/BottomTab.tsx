@@ -13,7 +13,6 @@ export const BottomTab = () => {
                     <TabItem
                         {...tabItem}
                         key={tabItem.href}
-                        isActive={false}
                     />
                 ))
             }

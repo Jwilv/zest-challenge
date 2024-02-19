@@ -23,10 +23,14 @@ export const BreweryProvider = ({ children }: BreweryProviderProps) => {
 
     useEffect(() => {
         const getData = async () => {
-            const data = await breweriesApi.get(`/${id}`)
-                .then((res) => res.data)
-                .catch((err) => console.log(err))
-            setBrewery(data);
+            try {
+                const data = await breweriesApi.get(`/${id}`)
+                    .then((res) => res.data)
+                    .catch((err) => console.log(err))
+                setBrewery(data);
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         getData();

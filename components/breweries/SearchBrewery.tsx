@@ -18,8 +18,12 @@ export const SearchBrewery = () => {
     useEffect(() => {
 
         const getBereweriesByName = async () => {
-            const { data } = await breweriesApi.get(`?by_name=${debouncedValue}&per_page=8`);
-            setBreweriesData(data)
+            try {
+                const { data } = await breweriesApi.get(`?by_name=${debouncedValue}&per_page=8`);
+                setBreweriesData(data)
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         inputValue ? getBereweriesByName() : setBreweriesData([])
@@ -37,7 +41,15 @@ export const SearchBrewery = () => {
                 inputValue={inputValue}
             />
             {
-                debouncedValue !== '' && breweriesData.length === 0 && <ErrorSearch />
+                debouncedValue !== '' && breweriesData.length === 0
+                &&
+                <View
+                    flex={1}
+                    justifyContent='center'
+                    alignItems='center'
+                >
+                    <ErrorSearch />
+                </View>
             }
             <BreweriesList
                 breweries={breweriesData}
