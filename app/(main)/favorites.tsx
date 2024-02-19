@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { Main } from 'tamagui'
+import { ErrorSearch } from '~/components/errors/ErrorSearch'
 import { BreweriesList } from '~/components/list/BreweriesList'
 import { LikeContext } from '~/providers/LikeProvider'
 import { Container } from '~/tamagui.config'
@@ -12,9 +13,11 @@ const FavoritesPage = () => {
     return (
         <Container>
             <Main alignItems='center'>
-                <BreweriesList
-                    breweries={likeBreweries}
-                />
+                {
+                    likeBreweries.length === 0
+                        ? <ErrorSearch />
+                        : <BreweriesList breweries={likeBreweries} />
+                }
             </Main>
         </Container>
     )
