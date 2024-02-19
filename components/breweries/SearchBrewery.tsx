@@ -18,8 +18,12 @@ export const SearchBrewery = () => {
     useEffect(() => {
 
         const getBereweriesByName = async () => {
-            const { data } = await breweriesApi.get(`?by_name=${debouncedValue}&per_page=8`);
-            setBreweriesData(data)
+            try {
+                const { data } = await breweriesApi.get(`?by_name=${debouncedValue}&per_page=8`);
+                setBreweriesData(data)
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         inputValue ? getBereweriesByName() : setBreweriesData([])
