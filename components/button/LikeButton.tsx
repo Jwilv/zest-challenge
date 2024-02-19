@@ -2,6 +2,8 @@ import { Heart, HeartOff } from "lucide-react-native"
 import { useLike } from "~/hooks/useLike";
 import { ButtonCard } from "~/tamagui.config";
 import { PreviusBrewery } from "~/types";
+import { useContext } from 'react';
+import { LikeContext } from "~/providers/LikeProvider";
 
 export const LikeButton = ({
     name,
@@ -19,12 +21,16 @@ export const LikeButton = ({
         id,
     });
 
+    const { addLikeBreweries, deleteLikeBreweries } = useContext(LikeContext);
+
     const handleLike = async () => {
         if (storedValue) {
             await removeItemById();
+            deleteLikeBreweries(id);
         }
         else {
             await addItem();
+            addLikeBreweries({ name, state, country, city, id });
         }
     }
 
