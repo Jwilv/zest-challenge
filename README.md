@@ -29,7 +29,7 @@ Esta es una aplicación móvil desarrollada como parte del Zest React Native Cha
 
 ## Instrucciones de Ejecución Local
 
-1. **Clonar el Repositorio:** `git clone https://github.com/Jwilv/zest-challenge`
+1. **Clonar el Repositorio:** `git clone https://github.com/Jwilv/zest-challenge `
 2. **Instalar Dependencias:** `npm install`
 3. **Ejecutar la Aplicación:** `npm start`
 

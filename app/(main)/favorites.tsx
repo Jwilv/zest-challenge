@@ -7,7 +7,7 @@ import { Container } from '~/tamagui.config'
 
 const FavoritesPage = () => {
 
-    const likeBreweries = useContext(LikeContext)
+    const { likeBreweries } = useContext(LikeContext)
 
     return (
         <Container>

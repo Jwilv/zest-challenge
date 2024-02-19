@@ -1,11 +1,11 @@
 
 import { CardBrewery } from '../card'
 import { FlatList, StyleProp, ViewStyle } from 'react-native'
-import { Brewery } from '../../types';
+import { Brewery, PreviusBrewery } from '../../types';
 
 interface Props {
     style?: StyleProp<ViewStyle>
-    breweries: Brewery[]
+    breweries: PreviusBrewery[]
 }
 
 export const BreweriesList = ({ style, breweries }: Props) => {
