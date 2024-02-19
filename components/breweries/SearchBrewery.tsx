@@ -37,7 +37,15 @@ export const SearchBrewery = () => {
                 inputValue={inputValue}
             />
             {
-                debouncedValue !== '' && breweriesData.length === 0 && <ErrorSearch />
+                debouncedValue !== '' && breweriesData.length === 0
+                &&
+                <View
+                    flex={1}
+                    justifyContent='center'
+                    alignItems='center'
+                >
+                    <ErrorSearch />
+                </View>
             }
             <BreweriesList
                 breweries={breweriesData}
