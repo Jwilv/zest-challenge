@@ -8,30 +8,31 @@ import { useDebonce } from "~/hooks/useDebounce"
 import breweriesApi from "~/services/breweries"
 import { ErrorSearch } from "../errors/ErrorSearch"
 
+interface SearchBreweryProps {
+    breweries: Brewery[]
+    handleChangeValue: React.Dispatch<React.SetStateAction<string>>
+    inputValue: string
+    debouncedValue: string
+}
 
-export const SearchBrewery = () => {
-
-    const [inputValue, setinputValue] = useState('');
-    const [breweriesData, setBreweriesData] = useState<Brewery[]>([]);
-    const debouncedValue = useDebonce(inputValue, 500);
-
-    useEffect(() => {
-
-        const getBereweriesByName = async () => {
-            try {
-                const { data } = await breweriesApi.get(`?by_name=${debouncedValue}&per_page=8`);
-                setBreweriesData(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        inputValue ? getBereweriesByName() : setBreweriesData([])
-
-    }, [debouncedValue])
+/**
+ * SearchBrewery component that renders a search input and a list of breweries.
+ *
+ * @param {SearchBreweryProps} breweries - List of breweries to display
+ * @param {function} handleChangeValue - Function to handle input value change
+ * @param {string} inputValue - Current value of the input
+ * @param {string} debouncedValue - Debounced value of the input
+ * @return {JSX.Element} The rendered component
+ */
+export const SearchBrewery = ({
+    breweries,
+    handleChangeValue,
+    inputValue,
+    debouncedValue
+}: SearchBreweryProps) => {
 
     const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-        setinputValue(e.nativeEvent.text)
+        handleChangeValue(e.nativeEvent.text)
     }
 
     return (
@@ -41,7 +42,7 @@ export const SearchBrewery = () => {
                 inputValue={inputValue}
             />
             {
-                debouncedValue !== '' && breweriesData.length === 0
+                debouncedValue !== '' && breweries.length === 0
                 &&
                 <View
                     flex={1}
@@ -52,7 +53,7 @@ export const SearchBrewery = () => {
                 </View>
             }
             <BreweriesList
-                breweries={breweriesData}
+                breweries={breweries}
             />
         </View>
     )
